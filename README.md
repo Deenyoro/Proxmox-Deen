@@ -1,3 +1,29 @@
+=======
+# Proxmox Scripts Additions
+
+This repository includes additional scripts for:
+
+- **[Talos VM](https://github.com/Deenyoro/Proxmox-Deen/blob/main/vm/talos-vm.sh)**: Automate the creation of a Talos VM in Proxmox.
+- **[OPNsense VM](https://github.com/Deenyoro/Proxmox-Deen/blob/main/vm/opnsense-vm.sh)**: Automate the creation of an OPNsense VM in Proxmox.
+
+Original repository by [tteck](https://github.com/tteck/Proxmox).
+
+---
+
+## Useful One-Line Scripts
+
+### After Install CD Remove Script
+
+```VMID={VMID}; qm stop $VMID; qm wait $VMID; echo "Removing CD drive and setting boot to VM drive"; qm set $VMID -delete ide2; qm set $VMID -boot order=scsi0; qm start $VMID; echo "Removed CD drive, set boot to VM drive, and started the VM"```
+
+
+### Stop VM Remount CD
+
+```VMID={VMID}; qm stop $VMID && qm wait $VMID && qm set $VMID -ide2 local:iso/{FILE.ISO},media=cdrom && qm set $VMID -boot order=ide2 && qm start $VMID && echo "Added Talos ISO, set boot to CD drive, and started VM $VMID"```
+
+
+# Original README
+
 <div align="center">
   <a href="#">
     <img src="https://raw.githubusercontent.com/tteck/Proxmox/main/misc/images/logo.png" height="100px" />
